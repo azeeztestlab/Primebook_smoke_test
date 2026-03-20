@@ -1,4 +1,4 @@
-# PrimeBook — Product Requirements Document (PRD)
+# PrimBook — Product Requirements Document (PRD)
 
 **Version:** 1.1 (Updated)  
 **Author:** Oluwadamilola Oluwaniyi (Product Manager)  
