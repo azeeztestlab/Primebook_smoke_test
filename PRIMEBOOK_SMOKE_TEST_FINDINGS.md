@@ -1,7 +1,7 @@
 # PrimeBook — Phase 1 Smoke Test Findings
 
 **Date:** March 19, 2026  
-**Tester:** Gundro1  
+**Lead QA:** Azeez  
 **Environment:** localhost:3000 (XAMPP dev server)  
 **Account:** qa.tester@primebook.test (Admin role)
 
@@ -162,12 +162,20 @@ Comparing the sidebar modules against what was listed in the Product Requirement
 
 ---
 
-## 7. Next Steps
+## 7. Next Steps Checklist
 
-- [ ] Deep-test each module's CRUD operations (Create, Read, Update, Delete)
-- [ ] Start with **Record** module (foundation — data feeds into all other modules)
-- [ ] Test **CRM** → Create an Order → Generate an Invoice flow  
-- [ ] Test **Bank Reconciliation** (their #1 selling point)
-- [ ] Check all submenus within each module for functionality
-- [ ] Test role-based access if multiple user roles are available
-- [ ] File formal bug reports for Issues #1–6
+My immediate action items for following testing phases:
+
+### 🛠️ Phase 2: Functional & Data Integrity Testing
+- [ ] **Record Module:** Verify "Add Record" functionality and ensure data persistence in the database.
+- [ ] **CRM Workflow:** Test the full Order → Quotation → Invoice → Credit Note lifecycle.
+- [ ] **Bank Reconciliation:** Upload sample statements and verify the auto-matching logic and UI feedback.
+- [ ] **Payroll Run:** Execute a sample payroll and verify the calculations for loans and pensions.
+
+### 🛡️ Phase 3: Permissions & Security
+- [ ] **Role Validation:** Log in as Accountant, Auditor, and HR to verify module access restrictions.
+- [ ] **Audit Trail Integrity:** Verify that every record creation/deletion is correctly logged with a timestamp.
+
+### 🐛 Bug Management
+- [ ] **Bug registry:** File formal tickets for Issues #1 through #6 identified in Phase 1.
+- [ ] **Console Logging:** Review browser console for hidden errors during complex transactions.
