@@ -1,4 +1,4 @@
-# PrimeBook QA — Strategy & Kickstart Guide
+# PrimBook QA — Strategy & Kickstart Guide
 
 **Role:** QA Lead / Tester for PrimeBook  
 **Prepared:** March 19, 2026  
@@ -8,7 +8,7 @@
 
 ## 1. Product Overview (Plain English)
 
-PrimeBook is a comprehensive **Financial & Business Management Platform** designed for small and medium businesses (SMEs). It combines accounting, CRM, HR, and production management into a single web application, replacing manual spreadsheets and notebooks.
+PrimBook is a comprehensive **Financial & Business Management Platform** designed for small and medium businesses (SMEs). It combines accounting, CRM, HR, and production management into a single web application, replacing manual spreadsheets and notebooks.
 
 ### Key Modules:
 | Module | Purpose |
