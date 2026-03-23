@@ -1,8 +1,4 @@
-<<<<<<< HEAD:PRIMBOOKS_QA_ONBOARDING_GUIDE.md
 # PrimBooks QA — Strategy & Kickstart Guide
-=======
-# PrimBook QA — Strategy & Kickstart Guide
->>>>>>> e6fa8ee8e7fe869ab635155531962573bdc2235e:PRIMEBOOK_QA_ONBOARDING_GUIDE.md
 
 **Role:** QA Lead / Tester for PrimBooks  
 **Prepared:** March 19, 2026  
@@ -12,11 +8,7 @@
 
 ## 1. Product Overview (Plain English)
 
-<<<<<<< HEAD:PRIMBOOKS_QA_ONBOARDING_GUIDE.md
 PrimBooks is a comprehensive **Financial & Business Management Platform** designed for small and medium businesses (SMEs). It combines accounting, CRM, HR, and production management into a single web application, replacing manual spreadsheets and notebooks.
-=======
-PrimBook is a comprehensive **Financial & Business Management Platform** designed for small and medium businesses (SMEs). It combines accounting, CRM, HR, and production management into a single web application, replacing manual spreadsheets and notebooks.
->>>>>>> e6fa8ee8e7fe869ab635155531962573bdc2235e:PRIMEBOOK_QA_ONBOARDING_GUIDE.md
 
 ### Key Modules:
 | Module | Purpose |
