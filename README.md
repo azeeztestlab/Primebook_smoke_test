@@ -4,8 +4,11 @@ Welcome to the central repository for **PrimBooks** QA testing, strategy, and fi
 
 ## 📂 Repository Structure
 
-- **[PRIMBOOKS_SMOKE_TEST_FINDINGS.md](./PRIMBOOKS_SMOKE_TEST_FINDINGS.md)**  
-  The primary report from the first smoke test. Includes visual evidence (screenshots) and detailed analysis of core module stability.
+- **[PRIMBOOKS_SMOKE_TEST_PART1.md](./PRIMBOOKS_SMOKE_TEST_PART1.md)**  
+  Smoke Test Part 1: System Accessibility, Authentication, and Module Navigation. (Bulky version for meetings).
+
+- **[PRIMBOOKS_SMOKE_TEST_PART2.md](./PRIMBOOKS_SMOKE_TEST_PART2.md)**  
+  Smoke Test Part 2: Detailed Dashboard Analysis, Identified Issues, and PRD Cross-Reference.
 
 - **[PRIMBOOKS_QA_ONBOARDING_GUIDE.md](./PRIMBOOKS_QA_ONBOARDING_GUIDE.md)**  
   The internal QA strategy, roadmap, and meeting prerequisites for the PrimBooks project.
