@@ -38,8 +38,11 @@ As the core USP of PrimBooks, this module was thoroughly checked for data flow:
 
 ## 4. HR & Payroll Management
 
-- **Workforce Data:** Successfully populated the module with sample employees to verify data persistence across sessions.
-- **Payroll Flow:** Initial verification of salary processing was executed. Calculations for Base Salary and Net Pay appear stable on the frontend.
+- **Workforce Data:** Successfully populated the module with sample employees (Jane Smith, John Doe). However, these employees are **missing from the Payroll Dashboard counts** (shows 0 employees).
+- **Bug #P-01: Math Error in Departments:** The "Average Salary" in the Department overview is consistently halved (e.g., ₦120k actual becomes ₦60k average).
+- **Bug #P-02: Broken Payroll Creation:** The "Create Payroll" table is completely empty, making it impossible to process salaries for active employees.
+- **Placeholder UI:** "Timesheet Mgmt." and "Leave Mgmt." are currently static labels with no functionality.
+
 
 ---
 
@@ -51,6 +54,11 @@ As the core USP of PrimBooks, this module was thoroughly checked for data flow:
 | **P2-02** | Large number silent truncation | Low | Records | Add a character/digit limit warning. |
 | **P2-03** | Horizontal scroll on Action menu | Low | UI/UX | Implement a sticky right-most column for Edit/Delete. |
 | **P2-04** | Label Mismatch: Sidebar vs PRD | Low | Global | Sync "Record" to "Records" and "Purchase" to "Purchases". |
+| **P2-05** | Payroll KPI shows 0 Employees with active data | **High** | Payroll | Fix data sync between HR and Payroll modules. |
+| **P2-06** | Average Salary halved in Department view | **High** | HR | Correct the aggregation logic in `Department` model. |
+| **P2-07** | Create Payroll table is empty | **Blocker** | Payroll | Investigate data fetching for payroll generation. |
+| **P2-08** | "null null" display in Bank Reconciliation | Low | Finance | Ensure user names are correctly concatenated in tables. |
+
 
 ---
 
