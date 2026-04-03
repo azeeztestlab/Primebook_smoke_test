@@ -1,0 +1,374 @@
+PrimBooks Product Requirements Document (PRD)
+Prepared by: Oluwadamilola Oluwaniyi (Product Manager)
+Platform: Cloud Based Progressive Web App (PWA)
+Document Version: Master PRD
+
+1. Product Overview
+PrimBooks is an all-in-one real time cloud based financial and business management software built to help small and medium sized businesses manage finances, operations, reporting, and internal controls from one integrated platform.
+Many SMEs and professionals still rely on spreadsheets, notebooks, manual bookkeeping, and disconnected tools to run different parts of their business. As those businesses grow, these fragmented systems often create poor financial visibility, duplicated work, reconciliation issues, weak accountability, poor asset tracking, and limited operational control.
+PrimBooks addresses this by bringing core business workflows into one cloud-based system that is accessible in real time and structured for both non-accountants and finance-oriented users.
+PrimBooks combines:
+business performance visibility
+product and service records
+customer and revenue workflows
+production and purchasing operations
+finance and accounting structure
+bank reconciliation
+inventory control
+asset tracking
+payroll management
+reports
+settings and user administration
+auditability and accountability
+PrimBooks functions as a central financial and business operating system for growing businesses.
+2. Vision
+To build the most intelligent and accessible financial operating system for SMEs by combining financial management, operational workflows, internal control, and future intelligent insights in one platform.
+3. Mission
+To give businesses the tools they need to operate with:
+financial clarity
+operational efficiency
+accountability
+real time business visibility
+scalable business control
+4. Target Users
+Small Business Owners: Need simple visibility into sales, expenses, cash movement, and business performance.
+Finance Teams and Accountants: Need structured accounting records, journals, taxation, reconciliation, reports, and transaction visibility.
+Internal Auditors: Need traceability of system actions, edits, deletions, and activity history.
+Operations and HR Managers: Need employee management, payroll operations, working-hour visibility, department structure, leave management, and loan tracking.
+Freelancers and Professionals: Need invoicing, expense tracking, customer records, and easy-to-understand financial summaries.
+Growing SMEs: Need stronger internal control, better asset tracking, more reliable reconciliation, operational integration, and clearer reporting.
+5. Core Problems PrimBooks Solves
+1. Poor Financial Visibility: Many businesses cannot clearly see total revenue, total expenses, cash flow, invoice activity, or overall financial position because their records are fragmented or manually maintained.
+2. Bank Reconciliation Complexity: Bank reconciliation is a major pain point for businesses using unstable or overly manual tools. PrimBooks provides a dedicated reconciliation workflow for statement upload, reconciliation entry management, status visibility, and reconciliation history. This is one of the strongest product differentiators.
+3. Lack of Financial Accountability: Businesses need visibility into who performed what action in the system. PrimBooks addresses this through audit trail logging and activity timestamps.
+4. Weak Asset Tracking: Many businesses struggle to maintain asset records, depreciation, maintenance records, reserve handling, lease activities, returns, and disposal records. PrimBooks provides structured asset management to improve control and financial accuracy.
+5. Disconnected Customer and Sales Workflows: Customer orders, invoices, quotations, and credit notes are often spread across separate tools or managed manually. PrimBooks centralizes them within CRM and connects them to finance.
+6. Operational Fragmentation: Production, purchasing, inventory, and finance are often disconnected in many businesses. PrimBooks links these areas to support more reliable business control and reporting.
+7. Payroll and Workforce Complexity: As organizations grow, they need employee administration, departments, payroll, loans, timesheets, leave, and pension tracking. PrimBooks addresses this with a dedicated payroll management area.
+6. Product Scope and Core Modules
+Arranged in current product order.
+6.1 Dashboard
+The dashboard is the first screen after login and gives a quick summary of the business at a glance.
+Core functionality:
+Total Revenue
+Total Expenses
+Total Orders
+Total Invoices
+Cash Flow Chart showing money in versus money out over time
+Revenue and Invoice Charts
+Expenses Overview showing category breakdown
+Purpose: To provide immediate business visibility and help users understand performance without navigating through multiple modules.
+6.2 Record
+The Record module serves as the central list of all products and services the business sells.
+Core functionality:
+add new products and services
+capture item name, price, type, and description
+edit records
+delete records
+view item details in a modal
+search through records
+Purpose: To maintain the central catalog of all business items and services that feed into customer and sales workflows.
+6.3 CRM (Customer Relationship Management)
+The CRM module manages customer profiles and revenue-related transaction workflows.
+Order
+create customer orders
+manage orders
+track order status: Pending, Delivered, Cancelled
+view order details
+edit orders
+delete orders
+filter orders by status
+filter orders by date range
+Invoice
+create invoices for customers
+link invoices to order and record items
+record payments against invoices
+view invoice details
+print invoices
+export invoices
+delete invoices
+Customer
+add customer profiles
+manage customer records including name, contact, and address
+view customer transaction history including purchases, payments, and journals
+edit customers
+delete customers
+Quotation
+create quotations
+send quotations to customers
+convert approved quotations to orders
+edit quotations
+view quotations
+delete quotations
+track quotation status: Draft, Sent, Accepted, Rejected
+Credit Notes
+issue credit notes against existing invoices
+record refund payments tied to a credit note
+view credit notes
+delete credit notes
+track status: Draft, Issued, Applied, Open, Closed, Cancelled
+Purpose: To manage the full customer lifecycle and connect revenue activity directly to finance and reporting.
+6.4 Production
+The Production module supports manufacturing and production-oriented workflows.
+Core functionality:
+create production orders
+add raw materials with required quantities
+track Work in Progress
+track Finished Goods
+view visual progress bar from 0 to 100 percent
+track production status: Planned, In Progress, Completed, Cancelled
+Purpose: To manage production operations and support businesses that manufacture or assemble goods.
+6.5 Purchase
+The Purchase module handles outgoing spending and vendor-related activity.
+Expenses
+record one-time expenses
+view expense entries
+edit expense entries
+delete expense entries
+Recurring Expenses
+set up repeating expenses
+define recurring frequency
+Vendor
+add vendor profiles
+manage vendor records
+view vendor transaction history
+edit vendor records
+delete vendor records
+Purpose: To manage spending, supplier records, and purchase-related transactions in a structured way.
+6.6 Finance
+The Finance module is the accounting backbone of PrimBooks.
+Chart of Account
+manage financial accounts
+Banking
+track bank accounts
+track bank transactions
+Taxation
+manage tax rates
+Journal
+create manual journal entries
+Purpose: To provide the underlying accounting structure and transaction control needed for reliable financial records.
+6.7 Payroll Management
+The payroll management area handles employees and workforce-related financial processes.
+Employees
+manage employee profiles
+Department
+manage departments
+Payroll
+run payroll
+Loan Management
+track loans
+Timesheet
+log working hours
+Leave
+manage leave requests
+Pension
+track pension contributions
+Purpose: To support employee administration, payroll operations, and workforce financial management.
+6.8 Inventory
+The Inventory module manages stock listing and stock adjustments.
+Inventory List
+add stock items
+define stock quantity
+define price
+upload images
+edit items
+delete items
+push items to Record module
+Inventory Adjustment
+record stock adjustments
+view adjustment history
+Purpose: To support stock control, stock availability visibility, and integration with the business item catalog.
+6.9 Bank Reconciliation
+This module supports reconciliation between system records and bank statements.
+Core functionality:
+upload bank statement
+manage reconciliation entries
+view reconciliation history
+view reconciliation status
+Purpose: To help businesses reconcile bank activity accurately and reduce mismatch risk.
+6.10 Audit Trail
+Audit Trail provides system-wide accountability.
+Core functionality:
+track activity across the system
+log actions with timestamps
+Purpose: To support internal control, accountability, and traceability of system activity.
+6.11 Assets
+The Assets module manages business assets and related lifecycle records.
+List of Assets
+add assets
+manage assets
+Depreciation
+record depreciation
+Maintenance
+log maintenance
+Reserve
+reserve assets
+Lease
+track leases
+Lease Return
+record returns
+Dispose
+record disposals
+Purpose: To help businesses control assets throughout their lifecycle, improve record accuracy, and strengthen financial oversight.
+6.12 Settings
+The Settings module manages user preferences, organization details, team setup, and system-level configuration.
+Core functionality:
+My Profile for personal information updates
+Notification for alert management
+Organization for company information updates
+Currency for currency setup
+Manage Team for role assignment
+Subscription for plan visibility
+Customization for templates
+Deactivate Account for account closure
+Purpose: To control account configuration, organization setup, user management, and personalization.
+6.13 Reports
+The Reports module provides structured business reporting.
+Financial Reports
+Profit and Loss
+Balance Sheet
+other financial reports
+Sales Reports
+Sales by Customer
+Sales by Item
+Sales Summary
+Purchase Reports
+Vendor summaries
+item summaries
+Inventory Reports
+stock overview
+Production Reports
+production summary
+Purpose: To provide visibility into business performance, financial health, stock position, and production activity.
+7. Authentication and Access
+login
+signup
+forgot password
+user profile update
+role-based team access and permissions
+Earlier product materials also define roles such as Admin, Accountant, HR, and Auditor, which aligns with the system’s access-control design.
+8. Security and Compliance
+PrimBooks prioritizes:
+secure authentication
+role-based access control
+audit logging
+activity visibility
+tax-related product support in line with VAT and WHT product direction
+9. Post-Launch Roadmap
+The post-launch roadmap expands PrimBooks beyond its core operational and accounting system into a broader financial planning and intelligence platform.
+Phase 1: Full-Scale Budgeting Module
+Objective: Introduce structured financial planning and budget control.
+Budget Creation
+create budget by department
+create budget by category
+create project-based budget
+annual and monthly planning
+Budget Types
+Zero-base Budget
+Flexible Budget
+Incremental Budget
+Fixed Budget
+Budget Allocation
+monthly budget breakdown
+department allocation controls
+spending threshold configuration
+Budget vs Actual Tracking
+real-time comparison
+variance calculation
+over-budget alerts
+Budget Reporting
+budget performance summary
+department budget report
+project budget report
+Phase 2: PrimAI
+Objective: Introduce intelligent automation and financial insights.
+Financial Intelligence
+automated break-even calculation
+profitability insights
+cash flow monitoring
+ratio analysis including profitability ratio, current ratio, working capital ratio, acid ratio, and liquidation ratio
+Smart Alerts
+low cash alerts
+expense spike detection
+revenue drop detection
+over-budget and under-budget notifications
+AI Classification and Insights
+expense categorization suggestions
+income classification suggestions
+short-term cash forecasting
+long-term cash forecasting
+customer payment behavior insights
+Phase 3: Advanced HR and Payroll Enhancement
+Objective: Enhance workforce automation and control.
+Employee Upgrade
+employee linked to vendor or customer where applicable for target-based roles
+Leave Management Enhancement
+improved leave balance automation
+structured leave approval workflow
+leave history tracking and analytics
+Timesheet and Attendance Upgrade
+clock-in and clock-out tracking
+absence tracking
+work-hour calculation
+attendance dashboard summary
+Biometric Integration
+face recognition attendance
+fingerprint device integration
+biometric validation logs
+Employee Self-Service
+employee document upload
+payroll slip access
+profile update submission
+Loan Management Automation
+automatic loan approval logic
+loan eligibility criteria
+repayment schedule auto-generation
+Phase 4: Financial Enhancements
+Objective: Strengthen financial reporting and data integrity.
+Multi-Currency Translation
+financial statement translation to foreign currency
+FX rate logic
+historical rate tracking
+Advanced Statements
+enhanced customer statements
+enhanced vendor statements
+improved export structure
+Customer Merge Logic
+merge duplicate customers with different IDs
+consolidate transaction history
+maintain audit trail for merged records
+Strategic Outcome: After these upgrades, PrimBooks evolves into a financial planning system, an AI-driven accounting assistant, a workforce automation tool, a multi-currency capable platform, and a scalable SME financial infrastructure.
+10. Success Metrics
+Key product metrics include:
+onboarding completion rate
+invoice creation frequency
+reconciliation success rate
+module adoption
+user retention
+customer satisfaction with visibility and control
+Module-specific attention should be given to:
+bank reconciliation usage
+CRM usage
+payroll usage
+asset management usage
+11. Strategic Positioning
+PrimBooks is positioned as an all-in-one real time cloud based financial and business management platform for SMEs that need:
+financial control
+operational clarity
+reconciliation accuracy
+audit visibility
+asset visibility
+integrated workflows across finance, operations, customer workflows, and workforce administration
+Final Message: PrimBooks gives growing businesses the clarity, control, and accountability they need to operate confidently.
+12. Expected Outcome
+PrimBooks is designed to evolve into a complete financial operating system for SMEs integrating:
+accounting
+CRM
+production
+inventory
+payroll
+auditability
+asset control
+budgeting
+financial intelligence
+within one connected platform.
