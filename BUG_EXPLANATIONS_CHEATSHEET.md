@@ -45,17 +45,7 @@
 
 ---
 
-### LIAB-001: Liabilities Module is Completely Missing
 
-**Where:** Should be in the sidebar navigation — but it's not there
-
-**What happens:** The Product Requirements Document (PRD) says there should be a "Liabilities" module where businesses track their debts, loans, and money they owe. We looked through the entire sidebar menu — top to bottom — and it doesn't exist. There's no link, no menu item, nothing.
-
-**Why it matters:** Every business has liabilities — loans, vendor credit, outstanding payments. Without this module, the financial picture is incomplete. An accountant can't prepare a proper balance sheet because half of it (what the business owes) has nowhere to be recorded.
-
-**What you say in the meeting:** *"The PRD requires a Liabilities module for tracking debts and loans. It's completely absent from the application — not even a placeholder in the sidebar. This is a feature gap."*
-
----
 
 ### DATA-003: Extremely Large Numbers Cause Data Corruption
 

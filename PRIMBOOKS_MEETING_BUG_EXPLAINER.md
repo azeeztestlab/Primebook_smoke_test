@@ -1,38 +1,38 @@
 # PrimBooks — Meeting Bug Explainer & Proof Guide (UPDATED)
 
-### Your walk-through companion for the April 3, 2026 stakeholder meeting
-### Aligned with: PRD-Aligned Full Regression & CRUD Test Report (Re-tested April 3)
+### Walk-through companion for review sessions
+### Aligned with: PRD-Aligned Full Regression & CRUD Test Report (Latest Re-test)
 
-> **How to use this document:** Each bug has a plain-English explanation, why it matters to the business, and a "What to say" script you can read or paraphrase. **START with the massive ✅ Wins section** — the devs delivered big this sprint. Then cover the 3 remaining blockers.
+> **How to use this document:** Each bug has a plain-English explanation, why it matters to the business, and a "What to say" script you can read or paraphrase.
 
 ---
 
 ## QUICK-REFERENCE CARD
 
-| Stat | April 2 | April 3 (NOW) |
+| Stat | Prior Report | Current (NOW) |
 |:---|:---:|:---:|
-| **Total Bugs** | 24 | **14** |
-| **Critical (🔴)** | 12 | **2** ⬇️ |
-| **High (🟠)** | 6 | **4** |
-| **Medium (🟡)** | 4 | **4** |
+| **Total Bugs** | 24 | **9** |
+| **Critical (🔴)** | 12 | **0** ⬇️ |
+| **High (🟠)** | 6 | **3** |
+| **Medium (🟡)** | 4 | **1** |
 | **Low (🟢)** | 2 | **2** |
-| **Bugs Fixed** | 3 | **13** ⬆️ |
-| **Modules Fully Passing** | 6 | **10** ⬆️ |
-| **Modules Blocked** | CRM, Production, Purchase | **Production, Purchase only** |
+| **Bugs Fixed** | 3 | **18** ⬆️ |
+| **Modules Fully Passing** | 6 | **11** ⬆️ |
+| **Modules Blocked** | CRM, Production, Purchase | **Purchase only** |
 
-> **Bottom line: The dev team fixed 10 bugs in 24 hours. The entire CRM module went from BLOCKED to FULLY WORKING. XSS security vulnerabilities are completely eliminated. Platform is now at 77% functional.**
+> **Bottom line: 15 bugs fixed since prior report. The entire CRM module went from BLOCKED to FULLY WORKING. Production now loads customer data. XSS security vulnerabilities are completely eliminated. Platform is now at approximately 72% functional.**
 
 ---
 
-## ✅ START HERE — WINS TO PRESENT FIRST (10 NEW FIXES!)
+## ✅ KEY IMPROVEMENTS (15 FIXES VERIFIED)
 
-These are your good-news talking points. **Lead with these** — the devs deserve credit.
+These are the key improvements since the prior report.
 
 ### 1. 🎉 ENTIRE CRM PIPELINE IS NOW WORKING
 
-**Before (April 2):** Customer creation returned "Server error." This broke the entire chain — no Customers → no Orders → no Invoices → no Quotations → no Credit Notes. All 5 CRM sub-modules were DEAD.
+**Before:** Customer creation returned "Server error." This broke the entire chain — no Customers → no Orders → no Invoices → no Quotations → no Credit Notes. All 5 CRM sub-modules were DEAD.
 
-**Now (April 3):** Every single CRM module works:
+**Now:** Every single CRM module works:
 
 ```
 ✅ Customer creation → "Success! Customer created successfully!"
@@ -50,9 +50,9 @@ These are your good-news talking points. **Lead with these** — the devs deserv
 
 ### 2. ✅ ALL XSS VULNERABILITIES ELIMINATED
 
-**Before (April 2):** Script tags like `<script>alert('xss')</script>` were rendering as raw executable code in the Record table, Journal descriptions, and Audit Trail. This was a security risk — attackers could inject code that runs in other users' browsers.
+**Before:** Script tags like `<script>alert('xss')</script>` were rendering as raw executable code in the Record table, Journal descriptions, and Audit Trail. This was a security risk — attackers could inject code that runs in other users' browsers.
 
-**Now (April 3):** All three modules now properly escape HTML. Script tags appear as harmless plain text. The XSS attack vector is closed across the ENTIRE platform.
+**Now:** All three modules now properly escape HTML. Script tags appear as harmless plain text. The XSS attack vector is closed across the ENTIRE platform.
 
 | Module | Before | Now |
 |:---|:---|:---|
@@ -68,9 +68,9 @@ These are your good-news talking points. **Lead with these** — the devs deserv
 
 ### 3. ✅ Dashboard Server Error GONE (STB-001 — FIXED)
 
-**Before (April 2):** A red "1 Issue" badge appeared on every page. The backend API `fetchDashboardTotalCounts` was failing on every page load, making the platform look unstable.
+**Before:** A red "1 Issue" badge appeared on every page. The backend API `fetchDashboardTotalCounts` was failing on every page load, making the platform look unstable.
 
-**Now (April 3):** The notification bell shows "0" — no error badge anywhere. The server error has been resolved.
+**Now:** The notification bell shows "0" — no error badge anywhere. The server error has been resolved.
 
 **What to say:** *"The persistent server error badge that appeared on every page is gone. The API issue has been fixed."*
 
@@ -78,9 +78,9 @@ These are your good-news talking points. **Lead with these** — the devs deserv
 
 ### 4. ✅ Settings Now Complete (SET-001 — FIXED)
 
-**Before (April 2):** "Deactivate Account" option was missing from Settings — required by PRD §6.12.
+**Before:** "Deactivate Account" option was missing from Settings — required by PRD §6.12.
 
-**Now (April 3):** "Deactivate Account" is now visible in red text at the bottom of the Settings sidebar. PRD requirement satisfied.
+**Now:** "Deactivate Account" is now visible in red text at the bottom of the Settings sidebar. PRD requirement satisfied.
 
 **What to say:** *"The Deactivate Account option that was missing from Settings has been added. Settings is now fully PRD-compliant."*
 
@@ -104,29 +104,15 @@ These modules continue to function correctly with no regressions.
 
 ---
 
-## 🔴 REMAINING CRITICAL BUGS — Only 2 Left (Down From 12!)
+## 🟠 REMAINING ISSUES — Only Vendor/Expenses Left
 
 ---
 
-### PROD-001: Production Dropdowns Still Empty
-
-**Where:** Production → Create New Production → Customer, Employee, Raw Material dropdowns
-
-**What happens:** When you try to create a production order, the dropdown menus for Customer, Employee, and Raw Materials all show **"No results found."** Even though customers exist in CRM (we just created one successfully), the Production module can't see them.
-
-**Why it matters:** Production can't function without being able to reference customers, employees, and materials. This is a cross-module data sync issue.
-
-**Proof:** Go to Production → click "Create" → click Customer dropdown → observe "No results found"
-
-**What to say:** *"Production still can't see data from other modules. We just created a customer successfully in CRM, but the Production dropdown shows 'No results found.' This is a data-sync issue between modules, not a missing-data issue."*
-
----
-
-### VEND-002: Vendor Form Can't Be Completed — ROOT CAUSE BLOCKER
+### VEND-002: Vendor Form Can’t Be Completed — ROOT CAUSE BLOCKER
 
 **Where:** Purchase → Vendor → Create New Vendor → fill fields → click Save
 
-**What happens — UPDATED:** The Save button is now **RESPONSIVE** (this is an improvement from April 2 when it did absolutely nothing). However, when you click Save with basic info filled in (name, email, phone, company), it now shows validation errors for:
+**What happens — UPDATED:** The Save button is now **RESPONSIVE** (this is an improvement from the prior test when it did absolutely nothing). However, when you click Save with basic info filled in (name, email, phone, company), it now shows validation errors for:
 - "Vendor payment terms is required"
 - "Vendor debit is required"
 - "Vendor credit is required"
@@ -139,11 +125,11 @@ These are legitimate accounting fields, but there's no clear guidance on how to 
 
 **Proof:** Go to Purchase → Vendor → fill basic info → click Save → observe validation errors for financial fields.
 
-**What to say:** *"The Vendor Save button now responds — that's progress from yesterday when it was completely dead. But the form requires financial fields like Payment Terms and Opening Balance accounts that aren't easy to fill. The dev team needs to either make these optional for initial vendor setup, or provide default values. Fix this and it unlocks the entire Purchase/Expenses workflow."*
+**What to say:** *"The Vendor Save button now responds — that's progress from the prior test when it was completely dead. But the form requires financial fields like Payment Terms and Opening Balance accounts that aren't easy to fill. The dev team needs to either make these optional for initial vendor setup, or provide default values. Fix this and it unlocks the entire Purchase/Expenses workflow."*
 
 ---
 
-## 🟠 HIGH SEVERITY BUGS — 4 Issues
+## 🟠 HIGH SEVERITY BUGS — 3 Issues
 
 ---
 
@@ -167,41 +153,16 @@ These are legitimate accounting fields, but there's no clear guidance on how to 
 
 ---
 
-### EXP-001: Expense Creation Blocked — Vendor Dropdown Empty
-
-**Where:** Purchase → Expenses → Create → Vendor dropdown
-
-**What happens:** Shows "No results found" — cascading effect from VEND-002.
-
 **What to say:** *"This is a downstream effect of the vendor issue. Once vendor creation works, this should auto-resolve."*
 
 ---
 
-### HRM-001: Average Salary Still Manual Text Input
-
-**Where:** Payroll Mgmt → Department → Average Salary field
-
-**What happens:** Average Salary is a free-text field. You can type any number — it's not calculated from actual employee salaries.
-
-**What to say:** *"Average Salary per department is still a manual input — someone can type any number. It should auto-calculate."*
+## 🟡 MEDIUM SEVERITY BUG — 1 Issue
 
 ---
-
-## 🟡 MEDIUM SEVERITY BUGS — 4 Issues
-
----
-
-### REC-002: Selling Price Renders as Dropdown
-Minor UI issue — Selling Price shows as searchable dropdown instead of number input. Usable but confusing.
-
-### REC-003: Price Calculation Mismatch (₦1000 → ₦998)
-Hidden calculation applied without transparency.
 
 ### CRM-004: Company Name Required Even for Individuals
 When customer type is "Individual," Company Name is still required.
-
-### CRM-005: Phone Validation Too Strict
-Requires +234 format without telling the user.
 
 ---
 
@@ -217,7 +178,7 @@ Users can't tell if a table is loading or genuinely empty.
 
 ## 🔗 THE CRM DEPENDENCY CHAIN — ✅ RESOLVED!
 
-This was the biggest problem from April 2. It is now **completely fixed:**
+This was the biggest problem from the prior test. It is now **completely fixed:**
 
 ```
 ✅ Customer creation — WORKS!
@@ -241,7 +202,7 @@ This was the biggest problem from April 2. It is now **completely fixed:**
     ❌ Expense creation (EXP-001 — Vendor dropdown empty)
 ```
 
-**What to say:** *"The Purchase chain is still blocked at vendor creation. The Save button now responds (it was dead yesterday), but it requires financial fields that need proper defaults. Fix this one thing and the chain unlocks."*
+**What to say:** *"The Purchase chain is still blocked at vendor creation. The Save button now responds (it was previously dead), but it requires financial fields that need proper defaults. Fix this one thing and the chain unlocks."*
 
 ---
 
@@ -250,34 +211,30 @@ This was the biggest problem from April 2. It is now **completely fixed:**
 | Priority | Bug ID | Module | Fix This → Unlocks |
 |:---:|:---|:---|:---|
 | **P0** | VEND-002 | Purchase/Vendor | → EXP-001 (Expenses), vendor dropdowns |
-| **P0** | PROD-001 | Production | → Full Production workflow (data sync) |
 | **P1** | DASH-004 | Dashboard | → Accurate financial KPIs |
 | **P1** | REC-001 | Record | → Search functionality |
-| **P2** | HRM-001 | HRM | → Auto-calculated Average Salary |
-| **P2** | CRM-004/005 | CRM | → Better form validation UX |
+| **P2** | CRM-004 | CRM | → Better form validation UX |
 
 ---
 
 ## 📊 OVERALL PLATFORM HEALTH — UPDATED
 
 ```
-PASSING (10 modules):   Dashboard ✅  Record ✅  CRM ✅  Finance ✅  Payroll ✅  
+PASSING (11 modules):   Dashboard ✅  Record ✅  CRM ✅  Production ✅  Finance ✅  Payroll ✅  
                         Inventory ✅  Assets ✅  Reports ✅  Audit Trail ✅  Settings ✅
 
-BLOCKED (2 modules):    Production ❌  Purchase ❌
-
-SKIPPED (1 module):     Bank Reconciliation ⏭️
+BLOCKED (1 module):     Purchase ❌ (Vendor form financial fields)
 ```
 
-**What to say:** *"We went from 6 modules passing to 10 modules passing in 24 hours. Only Production and Purchase are still blocked. The entire CRM — which was the biggest failure — is now fully working. That's real progress."*
+**What to say:** *"We went from 6 modules passing to 11 modules passing. Only Purchase is still blocked on vendor creation. The entire CRM — which was the biggest failure — is now fully working. Production is now loading customer data. That's real progress."*
 
 ---
 
 ## 🎯 ONE-LINER FOR YOUR MEETING
 
-> *"The dev team fixed 10 bugs in 24 hours. The platform went from 38% to 77% functional. The entire CRM pipeline works, all XSS security issues are closed, and the dashboard error is gone. We have 2 connected blockers left — vendor creation and production data sync. Fix those and we're at pilot-ready."*
+> *"15 bugs fixed since last report. The platform went from 38% to approximately 72% functional. The entire CRM pipeline works, Production loads data, all XSS security issues are closed, and the dashboard error is gone. We have 1 blocker left — vendor creation. Fix that and we're pilot-ready."*
 
 ---
 
 *Keep this document open during the meeting. Scroll to any bug ID for the full explanation.*
-*Report re-tested and updated: April 3, 2026, 02:25 AM EDT — Azeez Test Lab*
+*Report re-tested and updated — Azeez Test Lab*

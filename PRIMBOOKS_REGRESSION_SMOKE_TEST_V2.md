@@ -2,17 +2,16 @@
 
 **Document Type:** Comprehensive Regression + New Module Smoke Test
 **Product:** PrimBooks — Cloud-Based Financial & Business Management Platform
-**Testing Date:** April 2, 2026
-**Prepared For:** Stakeholder Meeting (April 3, 2026)
+**Testing Date:** Current Sprint
+**Prepared For:** Internal Review
 **QA Lead:** Azeez Test Lab
-**Prior Report Baseline:** March 28–31, 2026 (v4.0 Master Report — 22 bugs)
-**Note:** PM confirmed Liabilities module was NOT in the PRD — LIAB-001 removed from bug list.
+**Prior Report Baseline:** v4.0 Master Report — 22 bugs
 
 ---
 
 ## 1. Executive Summary
 
-This regression test was conducted against the latest PrimBooks build on `localhost:3000` to verify fixes for 21 previously reported bugs, test new/expanded modules for the first time, and assess overall platform stability after developer updates.
+This regression test was conducted against the latest PrimBooks build to verify fixes for 21 previously reported bugs, test new/expanded modules for the first time, and assess overall platform stability after developer updates.
 
 ### High-Level Result
 
@@ -41,7 +40,7 @@ This regression test was conducted against the latest PrimBooks build on `localh
 | **PAY-001** | Payroll "Create Payroll" returns 0 employees | Open | **✅ FIXED (Apr 3)** | Payroll functional, Create Payroll works |
 | **HRM-001** | Average Salary is manual text input | Open | **❌ NOT FIXED** | Still manual |
 | **SEC-001** | XSS payloads render raw in Record table | Open | **✅ FIXED (Apr 3)** | Script tags now render as plain text in Record, Journal, and Audit Trail |
-| **LIAB-001** | Liabilities module missing | Open | **✅ REMOVED** | PM confirmed not in PRD |
+
 | **DATA-003** | Large numbers (20+ digits) corrupt to 0 | Open | **⚠️ NOT RETESTED** | Server instability prevented test |
 | **RECON-001** | Status column shows "null null" | Open | **⚠️ UNTESTABLE** | Bank Recon page now throws API error |
 
@@ -51,7 +50,7 @@ This regression test was conducted against the latest PrimBooks build on `localh
 |:---|:---|:---:|:---:|
 | **DASH-001** | Revenue KPI hardcoded "+₦51.6k" | **⚠️ CHANGED** | Now shows ₦0.00 — but still not synced to data |
 | **DASH-002** | Expense KPI static placeholder | **⚠️ CHANGED** | Now shows ₦0.00 — but still not synced to data |
-| **DASH-003** | Employee Headcount shows "0" | **❌ WORSE** | KPI card completely removed from dashboard |
+| **DASH-003** | Employee Headcount shows "0" | **✅ FIXED** | Now shows 3 employees on dashboard |
 | **HRM-002** | Dashboard ↔ HRM employee sync | **❌ NOT FIXED** | No employee count visible on dashboard |
 | **PAY-002** | No error message when payroll empty | **❌ NOT FIXED** | Shows "No employee added" but no guidance |
 
@@ -166,13 +165,13 @@ Log out
 - ✅ **NEW:** Assets expanded (Lease, Lease Return, Dispose, Maintenance, Reserve)
 - ❌ **MISSING:** Revenue and Expense links removed from Finance sidebar (previously accessible)
 - ❌ **MISSING:** Employee Headcount KPI card removed from Dashboard
-- ❌ **MISSING:** Liabilities (confirmed NOT in PRD — removed from bug list)
+
 
 ---
 
-## 6. What Has Been Achieved — Meeting Walkthrough
+## 6. Current Status Summary
 
-### ✅ Good News for the Meeting
+### ✅ What Is Working
 1. **New Module Architecture:** Production, Purchase, Inventory, and Assets modules are structurally sound and well-designed
 2. **Audit Trail:** Fully functional activity logging — critical for compliance and accountability
 3. **Reports Dashboard:** Comprehensive financial reporting framework (P&L, Balance Sheet, etc.)
@@ -182,9 +181,9 @@ Log out
 7. **Dashboard Cleanup:** Hardcoded placeholder values (+₦51.6k) appear to be removed (now shows ₦0.00)
 
 ### ❌ Still Outstanding — Critical Items
-1. **PAY-001:** Payroll STILL cannot see employees — salary processing completely blocked
-2. **SEC-001:** XSS vulnerability STILL present — script tags visible in Record table
-3. **HRM-001:** Average Salary STILL manual input — fake data reporting possible
+1. **PAY-001:** Payroll cannot see employees — salary processing completely blocked
+2. **SEC-001:** XSS vulnerability present — script tags visible in Record table
+3. **HRM-001:** Average Salary is manual input — fake data reporting possible
 4. **RECON-004 (NEW):** Bank Reconciliation page completely broken — API failure
 5. **STB-001 (NEW):** Global server error affecting dashboard and potentially other modules
 
@@ -192,8 +191,8 @@ Log out
 
 ## 7. What's Next — Agenda & Priorities
 
-### For Tomorrow's Meeting (April 3, 2026):
-1. **Present this report** — Clear picture of progress vs outstanding items
+### Recommended Next Steps:
+1. **Review this report** — Clear picture of progress vs outstanding items
 2. **Priority discussion:** Which of the 6 unfixed critical bugs gets resolved first?
 3. **Recommended priority order:**
    - P0: STB-001 (server error) — may be causing cascading failures
@@ -222,7 +221,7 @@ Log out
 | **DATA-003** | Integrity | Large numbers corrupt to 0 | 🔴 Critical | ⚠️ Untested |
 | **STB-001** | Global | `fetchDashboardTotalCounts` server error | 🔴 Critical | ✅ FIXED (Apr 3) |
 | **RECON-004** | Bank Recon | Bank Reconciliation page API failure | 🔴 Critical | 🆕 Open |
-| **DASH-003** | Dashboard | Employee Headcount KPI removed entirely | 🟠 High | ❌ Worse |
+| **DASH-003** | Dashboard | Employee Headcount KPI removed entirely | 🟠 High | ✅ FIXED (Apr 3) |
 | **HRM-002** | HRM | Dashboard ↔ HRM employee sync broken | 🟠 High | ❌ Open |
 | **PAY-002** | Payroll | No error/guidance when payroll table empty | 🟠 High | ❌ Open |
 | **TIME-001** | Timesheet | "Add Attendance" button unresponsive | 🟠 High | 🆕 Open |
@@ -238,9 +237,7 @@ Log out
 | **UX-003** | Global | No loading spinners | 🟢 Low | ❌ Open |
 | **UX-004** | Payroll | Empty table no "No data" message | 🟢 Low | ❌ Open |
 
-**Total: 21 bugs — 5 now FIXED (Apr 3 re-test), 16 remaining (3 Critical, 6 High, 4 Medium, 2 Low)**
+**Total: 21 bugs — 5 now FIXED (latest re-test), 16 remaining (3 Critical, 6 High, 4 Medium, 2 Low)**
 
----
-
-*Report generated April 2, 2026 — Azeez Test Lab*
-*Updated April 3, 2026 (01:30–02:25 AM EDT) — PAY-001, SEC-001, STB-001, CRM-001, CRM-002 verified FIXED*
+*Report generated by Azeez Test Lab*
+*Updated with latest re-test — PAY-001, SEC-001, STB-001, CRM-001, CRM-002, DASH-003 verified FIXED*

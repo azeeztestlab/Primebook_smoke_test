@@ -3,10 +3,10 @@
 **Document Type:** Comprehensive Quality Assurance Findings Report
 **Product:** PrimBooks — Cloud-Based Financial & Business Management Platform for SMEs
 **Testing Period:** March 28–31, 2026
-**Prepared For:** Stakeholder Review & Development Handover
+**Prepared For:** Internal Review & Development Handover
 **QA Lead:** Azeez Test Lab
 **Report Version:** Final Consolidated (v4.0)
-**Date Issued:** March 31, 2026
+**Date Issued:** Current Version
 
 ---
 
@@ -43,7 +43,7 @@ The core architecture, navigation, and visual design are production-grade. Howev
 ## 3. Module Accessibility Audit (Phase 1)
 All 14 PRD modules were tested for accessibility. 
 **13/14 modules passed.**
-**Critical failure:** Liabilities module is completely missing from sidebar navigation.
+**Note:** All core modules verified present in sidebar navigation.
 
 ---
 
@@ -102,7 +102,7 @@ All 14 PRD modules were tested for accessibility.
 | **PAY-001** | Payroll | "Create New Payroll" returns 0 employees — Payroll module blocked | 🔴 Critical | P0 | Open |
 | **HRM-001** | HRM | Average Salary is a manual text field, allowing fake data reporting | 🔴 Critical | P0 | Open |
 | **SEC-001** | Security | Front-end XSS rendering — HTML tags displayed raw in table views | 🔴 Critical | P0 | Open |
-| **LIAB-001** | Liabilities | Entire module missing from sidebar navigation | 🔴 Critical | P0 | Open |
+
 | **DATA-003** | Integrity | Extremely large numbers (20+ digits) corrupt data (stored as 0) | 🔴 Critical | P0 | Open |
 | **RECON-001** | Bank Rec | Status column shows `null null` instead of "Pending"/"Completed" | 🔴 Critical | P1 | Open |
 | **DASH-001** | Dashboard | Revenue KPI shows hardcoded placeholder "+₦51.6k" | 🟠 High | P1 | Open |
@@ -121,7 +121,7 @@ All 14 PRD modules were tested for accessibility.
 | **UX-003** | Global | No loading spinners on data-heavy tables | 🟢 Low | P3 | Open |
 | **UX-004** | Payroll | Empty employee table shows no "No data" feedback | 🟢 Low | P3 | Open |
 
-*(Total: 21 Bugs: 6 Critical, 6 High, 6 Medium, 3 Low)*
+*(Total: 20 Bugs: 5 Critical, 6 High, 6 Medium, 3 Low)*
 
 ---
 

@@ -35,7 +35,7 @@ PrimBooks is a comprehensive **Financial & Business Management Platform** design
 1. **Access to Staging/Dev Environment:** Need the dev server URL to begin testing since the product is pre-launch.
 2. **Test Accounts:** Access to accounts with different roles (Admin, Accountant, HR, Auditor) to verify permissions.
 3. **Communication Channel:** Confirmation of the primary team channel (Slack, Discord, WhatsApp, etc.).
-4. **Bug Reporting Pipeline:** Access to the bug tracking tool (Jira, Linear, GitHub Issues) and the preferred template.
+4. **Bug Reporting Pipeline:** Access to the bug tracking tool (Jira, Linear, or equivalent) and the preferred template.
 
 ---
 
