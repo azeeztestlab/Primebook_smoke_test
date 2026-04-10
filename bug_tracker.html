@@ -922,86 +922,29 @@
 
 <script>
 // ===================== DATA =====================
-const DEFAULT_BUGS = [
-    { ticket: "PB-001", module: "Dashboard", feature: "Revenue KPI", description: "Revenue KPI shows ₦0.00 despite ₦550K in invoices", steps: "1. Create invoices in CRM\n2. Go to Dashboard\n3. Check Total Revenue card", expected: "Revenue KPI should show sum of all invoices (₦550,000)", actual: "Shows ₦0.00", severity: "Critical", status: "Open", team: "Backend" },
-    { ticket: "PB-002", module: "Dashboard", feature: "Expenses KPI", description: "Expenses KPI shows ₦0.00 despite payroll data", steps: "1. Create employees with salaries\n2. Go to Dashboard\n3. Check Total Expenses card", expected: "Should reflect payroll costs", actual: "Shows ₦0.00", severity: "Critical", status: "Open", team: "Backend" },
-    { ticket: "PB-003", module: "Dashboard", feature: "Orders Count", description: "Orders KPI shows 1 when 2 orders exist", steps: "1. Create 2 orders in CRM\n2. Go to Dashboard\n3. Check Orders card", expected: "Should show \"2\"", actual: "Shows \"1\"", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-004", module: "Dashboard", feature: "Invoices Count", description: "Invoices KPI shows 0 when 2 invoices exist", steps: "1. Create 2 invoices in CRM\n2. Go to Dashboard\n3. Check Invoices card", expected: "Should show \"2\"", actual: "Shows \"0\"", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-005", module: "Dashboard", feature: "Invoice Donut", description: "Invoice Donut chart shows 0 Issued when 2 exist", steps: "1. Create invoices\n2. Check Dashboard donut chart", expected: "Should show 2 Issued", actual: "Shows \"0 Issued Invoice(s)\"", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-006", module: "Dashboard", feature: "Revenue Chart", description: "Revenue Analysis chart completely empty", steps: "1. Create invoices\n2. Check Dashboard Revenue Analysis", expected: "Should show income data points", actual: "Flat line at zero", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-007", module: "Dashboard", feature: "Banks Widget", description: "Banks widget shows 'No accounts' despite Main Bank in CoA", steps: "1. Check Finance > CoA (Main Bank exists)\n2. Check Dashboard Banks widget", expected: "Should show Main Bank", actual: "Shows \"No bank accounts or credit cards configured\"", severity: "Medium", status: "Open", team: "Backend" },
-    { ticket: "PB-008", module: "Finance", feature: "Journal Entries", description: "Invoices don't auto-create journal entries", steps: "1. Create an invoice in CRM\n2. Go to Finance > Journal\n3. Check for new entries", expected: "Invoice should auto-create a journal entry (Revenue recognition)", actual: "\"No record found\" — journal is empty", severity: "Critical", status: "Open", team: "Backend" },
-    { ticket: "PB-009", module: "Finance", feature: "Banking Overview", description: "Banking page shows all zeros", steps: "1. Go to Finance > Banking\n2. Check balances", expected: "Should show Main Bank balance", actual: "Bank ₦0.00, Card ₦0.00, Cash ₦0.00", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-010", module: "Finance", feature: "Taxation", description: "Taxation page empty — no default tax templates", steps: "1. Go to Finance > Taxation", expected: "Should have at least VAT/WHT templates for Nigeria", actual: "\"No taxation data found\"", severity: "Medium", status: "Open", team: "Backend" },
-    { ticket: "PB-011", module: "Reports", feature: "P&L Statement", description: "P&L shows ₦0.00 for ALL categories", steps: "1. Create invoices (₦550K total)\n2. Go to Reports > P&L\n3. View \"All Time\"", expected: "Sales Revenue should show ₦550,000", actual: "All categories: ₦0.00", severity: "Critical", status: "Open", team: "Backend" },
-    { ticket: "PB-012", module: "Reports", feature: "Balance Sheet", description: "Balance Sheet UNBALANCED — ₦10M Assets vs ₦0 Equity", steps: "1. Go to Reports > Balance Sheet", expected: "Assets should equal Liabilities + Equity", actual: "Assets: ₦10,000,000. Liabilities: ₦0. Equity: ₦0. Warning displayed.", severity: "Critical", status: "Open", team: "Backend" },
-    { ticket: "PB-013", module: "Reports", feature: "Trial Balance", description: "Trial Balance UNBALANCED — ₦10M Debit vs ₦0 Credit", steps: "1. Go to Reports > Trial Balance", expected: "Total Debits should equal Total Credits", actual: "Debit: ₦10,000,000. Credit: ₦0", severity: "Critical", status: "Open", team: "Backend" },
-    { ticket: "PB-014", module: "Reports", feature: "Cash Flow", description: "Cash Flow shows ₦0.00 across all categories", steps: "1. Go to Reports > Cash Flow", expected: "Should reflect cash movements from transactions", actual: "Operating: ₦0, Investing: ₦0, Financing: ₦0", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-015", module: "Payroll", feature: "Payroll Run", description: "Can't add employees to payroll — no button exists", steps: "1. Go to Payroll > Create Payroll\n2. Fill payroll name and date\n3. Try to add employees", expected: "Should have a button/dropdown to select employees for payroll", actual: "Shows \"No employee added\" table with no way to populate", severity: "Critical", status: "Open", team: "Frontend" },
-    { ticket: "PB-016", module: "Payroll", feature: "Dashboard Count", description: "Payroll Dashboard shows 0 employees despite 2 existing", steps: "1. Create 2 employees\n2. Go to Payroll main page\n3. Check Total Employees card", expected: "Should show \"2\"", actual: "Shows \"0\"", severity: "High", status: "Open", team: "Backend" },
-    { ticket: "PB-017", module: "Payroll", feature: "Success Modal", description: "Department success modal shows 'undefined'", steps: "1. Go to Payroll > Departments\n2. Create a new department\n3. Observe success message", expected: "Should show \"Department Engineering has been successfully added\"", actual: "Shows \"Department undefined has been successfully added\"", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-018", module: "Payroll", feature: "Success Modal", description: "Employee success modal shows 'undefined undefined'", steps: "1. Go to Payroll > Employees\n2. Create a new employee\n3. Observe success message", expected: "Should show \"Employee Medusa Ikudaisi has been successfully added\"", actual: "Shows \"Employee undefined undefined has been successfully added\"", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-019", module: "Timesheet", feature: "Add Attendance", description: "Add Attendance button completely unresponsive", steps: "1. Go to Payroll > Timesheet Mgmt.\n2. Click \"Add Attendance\" button", expected: "Should open a form/modal to record attendance", actual: "Nothing happens. Button does not respond to clicks", severity: "High", status: "Open", team: "Frontend" },
-    { ticket: "PB-020", module: "Assets", feature: "Create Asset", description: "Classification dropdown not interactive", steps: "1. Go to Assets > Create Asset\n2. Fill name, source, cost\n3. Try to select Classification", expected: "Should open a dropdown with classification options", actual: "Dropdown renders as plain text. Cannot select any value", severity: "Critical", status: "Open", team: "Frontend" },
-    { ticket: "PB-021", module: "Production", feature: "Create Production", description: "Select Material dropdown not interactive", steps: "1. Go to Production > Create\n2. Look at Raw Materials section\n3. Click \"Select Material\"", expected: "Should open dropdown of inventory items", actual: "Element is not rendered as interactive. Clicking does nothing", severity: "Critical", status: "Open", team: "Frontend" },
-    { ticket: "PB-022", module: "Purchase", feature: "Vendor Creation", description: "Vendor creation fails — hidden required fields on Other Info tab", steps: "1. Go to Purchase > Vendor > New Vendor\n2. Fill only the visible main info tab\n3. Click Save", expected: "Should save with defaults or show required fields clearly", actual: "Returns 400 Bad Request. Must navigate to hidden \"Other Information\" tab", severity: "High", status: "Open", team: "Frontend" },
-    { ticket: "PB-023", module: "Purchase", feature: "Edit Vendor", description: "Edit Vendor resets Vendor Type from Company to Individual", steps: "1. Create a vendor as \"Company\" type\n2. Click Edit on that vendor\n3. Observe the Vendor Type field", expected: "Should retain \"Company\" as the saved type", actual: "Defaults back to \"Individual\"", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-024", module: "Inventory", feature: "Create Form", description: "Inventory form missing SKU/Code and Category fields", steps: "1. Go to Inventory > Create Inventory\n2. Look for SKU or Category fields", expected: "Should have fields for SKU/Code and Category", actual: "Neither field exists. SKU blank in list, Category defaults to \"Goods\"", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-025", module: "Global", feature: "Hydration Error", description: "Next.js hydration error persists across pages", steps: "1. Open PrimBooks\n2. Check bottom-left \"1 Issue\" badge\n3. Click to see error", expected: "No console errors in production", actual: "Red \"1 Issue\" badge. Console shows hydration mismatch", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-026", module: "Reports", feature: "Missing Reports", description: "No Payroll/HR reports in Reports module", steps: "1. Go to Reports\n2. Look for Payroll or HR tabs", expected: "Should have at least basic payroll reports", actual: "Only financial reports available", severity: "Medium", status: "Open", team: "Backend" }
-];
+const DEFAULT_BUGS = [];
 
 // ===================== STATE =====================
 let bugs = [];
 let expandedRows = new Set();
 
 // Version tracker — increment this each time DEFAULT_BUGS is updated
-const DATA_VERSION = 1;
+const DATA_VERSION = 2;
 
 function loadBugs() {
     const stored = localStorage.getItem('primbooks_bugs');
     const storedVersion = localStorage.getItem('primbooks_data_version');
 
+    // If data version changed, force a complete reset to DEFAULT_BUGS
+    if (!storedVersion || parseInt(storedVersion) < DATA_VERSION) {
+        bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
+        localStorage.setItem('primbooks_data_version', DATA_VERSION);
+        saveBugs();
+        return;
+    }
+
     if (stored) {
         bugs = JSON.parse(stored);
-        // AUTO-SYNC: Check if DEFAULT_BUGS has new tickets not in localStorage
-        const existingTickets = new Set(bugs.map(b => b.ticket));
-        const newBugs = DEFAULT_BUGS.filter(b => !existingTickets.has(b.ticket));
-
-        if (newBugs.length > 0) {
-            // Add new bugs while preserving user's existing status changes
-            newBugs.forEach(b => bugs.push(JSON.parse(JSON.stringify(b))));
-            saveBugs();
-            localStorage.setItem('primbooks_data_version', DATA_VERSION);
-            // Show sync notification after render
-            setTimeout(() => {
-                showSyncNotification(newBugs.length, newBugs.map(b => b.ticket));
-            }, 500);
-        }
-
-        // Also check if any DEFAULT_BUGS had their details updated (description, steps, etc.)
-        // but preserve user's status, so only update non-status fields
-        if (storedVersion && parseInt(storedVersion) < DATA_VERSION) {
-            const defaultMap = {};
-            DEFAULT_BUGS.forEach(b => defaultMap[b.ticket] = b);
-            bugs.forEach((bug, idx) => {
-                if (defaultMap[bug.ticket]) {
-                    const def = defaultMap[bug.ticket];
-                    // Update details but KEEP user's status
-                    bugs[idx].description = def.description;
-                    bugs[idx].steps = def.steps;
-                    bugs[idx].expected = def.expected;
-                    bugs[idx].actual = def.actual;
-                    bugs[idx].module = def.module;
-                    bugs[idx].feature = def.feature;
-                    bugs[idx].severity = def.severity;
-                    bugs[idx].team = def.team;
-                    // status is NOT overwritten — user's choice preserved
-                }
-            });
-            saveBugs();
-            localStorage.setItem('primbooks_data_version', DATA_VERSION);
-        }
     } else {
         bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
         localStorage.setItem('primbooks_data_version', DATA_VERSION);
