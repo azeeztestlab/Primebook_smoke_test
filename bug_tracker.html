@@ -922,14 +922,18 @@
 
 <script>
 // ===================== DATA =====================
-const DEFAULT_BUGS = [];
+const DEFAULT_BUGS = [
+    { ticket: "PB-001", module: "CRM", feature: "Quotation — Add Item", description: "Create Quotation form has no 'Add Item' button — cannot add products/services to quotation", steps: "1. Go to CRM > Quotation\n2. Click 'Create Quote'\n3. Select a customer, fill subject\n4. Look for an 'Add Item' button in the items table", expected: "An 'Add Item' button should exist below or beside the items table to add products/services", actual: "Table shows headers (Product, Hours, Rate, Discount %, Tax, Total Price) and 'No item added' but NO button exists to add items. Module is completely unusable.", severity: "Critical", status: "Open", team: "Frontend" },
+    { ticket: "PB-002", module: "CRM", feature: "Credit Note — Issue Date", description: "Credit Note Issue Date field does not save changes — stays on default date", steps: "1. Go to CRM > Credit Notes\n2. Click 'Add Credit Note'\n3. Select an invoice and reason\n4. Try to change the Issue Date field to a different date", expected: "Issue Date should update to the new value typed by the user", actual: "Date field remains stuck on default value (e.g. April 09, 2026) even after user types a new date. The input does not persist changes.", severity: "Medium", status: "Open", team: "Frontend" },
+    { ticket: "PB-003", module: "CRM", feature: "Order/Invoice — Cascade Behavior", description: "Deleting an order sets linked invoice amount to ₦0.00 and status to 'Reversed' instead of proper cleanup", steps: "1. Create an order with line items\n2. Create an invoice from that order\n3. Delete the order\n4. Check the invoice list", expected: "Either cascade-delete the linked invoice OR keep the invoice intact with the original amount/status", actual: "Invoice is NOT deleted but its amount changes to ₦0.00 and status becomes 'Reversed'. This creates orphaned/inconsistent financial data.", severity: "Medium", status: "Open", team: "Backend" }
+];
 
 // ===================== STATE =====================
 let bugs = [];
 let expandedRows = new Set();
 
 // Version tracker — increment this each time DEFAULT_BUGS is updated
-const DATA_VERSION = 2;
+const DATA_VERSION = 3;
 
 function loadBugs() {
     const stored = localStorage.getItem('primbooks_bugs');
