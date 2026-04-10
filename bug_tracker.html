@@ -706,6 +706,7 @@
             </div>
         </div>
         <div class="header-actions">
+            <button class="btn btn-danger" onclick="resetToDefaults()" title="Reset all status changes">🔄 Reset</button>
             <button class="btn btn-secondary" onclick="exportMarkdown()">📄 Export Markdown</button>
             <button class="btn btn-secondary" onclick="exportMeetingAudit()">📊 Export Meeting Audit</button>
             <button class="btn btn-primary" onclick="openAddModal()">+ Add Bug</button>
@@ -954,13 +955,74 @@ const DEFAULT_BUGS = [
 let bugs = [];
 let expandedRows = new Set();
 
+// Version tracker — increment this each time DEFAULT_BUGS is updated
+const DATA_VERSION = 1;
+
 function loadBugs() {
     const stored = localStorage.getItem('primbooks_bugs');
+    const storedVersion = localStorage.getItem('primbooks_data_version');
+
     if (stored) {
         bugs = JSON.parse(stored);
+        // AUTO-SYNC: Check if DEFAULT_BUGS has new tickets not in localStorage
+        const existingTickets = new Set(bugs.map(b => b.ticket));
+        const newBugs = DEFAULT_BUGS.filter(b => !existingTickets.has(b.ticket));
+
+        if (newBugs.length > 0) {
+            // Add new bugs while preserving user's existing status changes
+            newBugs.forEach(b => bugs.push(JSON.parse(JSON.stringify(b))));
+            saveBugs();
+            localStorage.setItem('primbooks_data_version', DATA_VERSION);
+            // Show sync notification after render
+            setTimeout(() => {
+                showSyncNotification(newBugs.length, newBugs.map(b => b.ticket));
+            }, 500);
+        }
+
+        // Also check if any DEFAULT_BUGS had their details updated (description, steps, etc.)
+        // but preserve user's status, so only update non-status fields
+        if (storedVersion && parseInt(storedVersion) < DATA_VERSION) {
+            const defaultMap = {};
+            DEFAULT_BUGS.forEach(b => defaultMap[b.ticket] = b);
+            bugs.forEach((bug, idx) => {
+                if (defaultMap[bug.ticket]) {
+                    const def = defaultMap[bug.ticket];
+                    // Update details but KEEP user's status
+                    bugs[idx].description = def.description;
+                    bugs[idx].steps = def.steps;
+                    bugs[idx].expected = def.expected;
+                    bugs[idx].actual = def.actual;
+                    bugs[idx].module = def.module;
+                    bugs[idx].feature = def.feature;
+                    bugs[idx].severity = def.severity;
+                    bugs[idx].team = def.team;
+                    // status is NOT overwritten — user's choice preserved
+                }
+            });
+            saveBugs();
+            localStorage.setItem('primbooks_data_version', DATA_VERSION);
+        }
     } else {
         bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
+        localStorage.setItem('primbooks_data_version', DATA_VERSION);
         saveBugs();
+    }
+}
+
+function showSyncNotification(count, tickets) {
+    const ticketList = tickets.join(', ');
+    showToast(`🔄 ${count} new bug${count > 1 ? 's' : ''} synced: ${ticketList}`);
+}
+
+function resetToDefaults() {
+    if (confirm('⚠️ This will reset ALL bugs to the original defaults and DELETE all your status changes. Are you sure?')) {
+        localStorage.removeItem('primbooks_bugs');
+        localStorage.removeItem('primbooks_data_version');
+        bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
+        localStorage.setItem('primbooks_data_version', DATA_VERSION);
+        saveBugs();
+        renderTable();
+        showToast('🔄 Reset to defaults — all status changes cleared');
     }
 }
 
