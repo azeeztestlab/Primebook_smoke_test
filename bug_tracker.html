@@ -706,7 +706,7 @@
             </div>
         </div>
         <div class="header-actions">
-            <button class="btn btn-danger" onclick="resetToDefaults()" title="Reset all status changes">🔄 Reset</button>
+            <button class="btn btn-secondary" onclick="undoLastChange()" title="Undo last change" id="undoBtn" disabled>↩ Undo</button>
             <button class="btn btn-secondary" onclick="exportMarkdown()">📄 Export Markdown</button>
             <button class="btn btn-secondary" onclick="exportMeetingAudit()">📊 Export Meeting Audit</button>
             <button class="btn btn-primary" onclick="openAddModal()">+ Add Bug</button>
@@ -934,6 +934,7 @@ const DEFAULT_BUGS = [
 // ===================== STATE =====================
 let bugs = [];
 let expandedRows = new Set();
+const MAX_UNDO_HISTORY = 50;
 
 // Version tracker — increment this each time DEFAULT_BUGS is updated
 const DATA_VERSION = 4;
@@ -946,7 +947,7 @@ function loadBugs() {
     if (!storedVersion || parseInt(storedVersion) < DATA_VERSION) {
         bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
         localStorage.setItem('primbooks_data_version', DATA_VERSION);
-        saveBugs();
+        saveBugsNoHistory(); // first load, don't push history
         return;
     }
 
@@ -955,8 +956,9 @@ function loadBugs() {
     } else {
         bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
         localStorage.setItem('primbooks_data_version', DATA_VERSION);
-        saveBugs();
+        saveBugsNoHistory();
     }
+    updateUndoButton();
 }
 
 function showSyncNotification(count, tickets) {
@@ -964,20 +966,78 @@ function showSyncNotification(count, tickets) {
     showToast(`🔄 ${count} new bug${count > 1 ? 's' : ''} synced: ${ticketList}`);
 }
 
-function resetToDefaults() {
-    if (confirm('⚠️ This will reset ALL bugs to the original defaults and DELETE all your status changes. Are you sure?')) {
-        localStorage.removeItem('primbooks_bugs');
-        localStorage.removeItem('primbooks_data_version');
-        bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
-        localStorage.setItem('primbooks_data_version', DATA_VERSION);
-        saveBugs();
-        renderTable();
-        showToast('🔄 Reset to defaults — all status changes cleared');
+// ===================== UNDO HISTORY =====================
+function pushToHistory() {
+    const history = JSON.parse(localStorage.getItem('primbooks_undo_history') || '[]');
+    // Save current state before the change
+    const currentState = localStorage.getItem('primbooks_bugs');
+    if (currentState) {
+        history.push(currentState);
+        // Keep only last N snapshots to avoid bloating storage
+        if (history.length > MAX_UNDO_HISTORY) {
+            history.shift();
+        }
+        localStorage.setItem('primbooks_undo_history', JSON.stringify(history));
+    }
+    updateUndoButton();
+}
+
+function undoLastChange() {
+    const history = JSON.parse(localStorage.getItem('primbooks_undo_history') || '[]');
+    if (history.length === 0) {
+        showToast('⚠️ Nothing to undo');
+        return;
+    }
+    // Pop the last state
+    const previousState = history.pop();
+    localStorage.setItem('primbooks_undo_history', JSON.stringify(history));
+    // Restore it
+    localStorage.setItem('primbooks_bugs', previousState);
+    bugs = JSON.parse(previousState);
+    renderTable();
+    updateUndoButton();
+    showToast('↩ Undone — reverted to previous state');
+}
+
+function updateUndoButton() {
+    const history = JSON.parse(localStorage.getItem('primbooks_undo_history') || '[]');
+    const btn = document.getElementById('undoBtn');
+    if (btn) {
+        btn.disabled = history.length === 0;
+        btn.title = history.length > 0
+            ? `Undo last change (${history.length} steps available)`
+            : 'No changes to undo';
     }
 }
 
-function saveBugs() {
+function resetToDefaults() {
+    if (confirm('⚠️ FACTORY RESET: This will wipe ALL bugs and restore original defaults. This CANNOT be undone. Are you absolutely sure?')) {
+        if (confirm('🛑 SECOND CONFIRM: All your added bugs, status changes, and edits will be permanently deleted. Proceed?')) {
+            localStorage.removeItem('primbooks_bugs');
+            localStorage.removeItem('primbooks_data_version');
+            localStorage.removeItem('primbooks_undo_history');
+            bugs = JSON.parse(JSON.stringify(DEFAULT_BUGS));
+            localStorage.setItem('primbooks_data_version', DATA_VERSION);
+            saveBugsNoHistory();
+            renderTable();
+            showToast('🔄 Factory reset complete — all data cleared');
+        }
+    }
+}
+
+function saveBugsNoHistory() {
     localStorage.setItem('primbooks_bugs', JSON.stringify(bugs));
+    updateTimestamp();
+}
+
+function saveBugs() {
+    pushToHistory(); // save current state BEFORE overwriting
+    localStorage.setItem('primbooks_bugs', JSON.stringify(bugs));
+    updateTimestamp();
+    updateUndoButton();
+}
+
+function updateTimestamp() {
     const now = new Date();
     const timeStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' +
                     now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
