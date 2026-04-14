@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>PrimBooks QA Bug Tracker — Azeez Test Lab</title>
+    <title>PrimBooks QA Bug Tracker â€” Azeez Test Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -264,7 +264,7 @@
         }
 
         .search-wrapper::before {
-            content: "🔍";
+            content: "ðŸ”";
             position: absolute;
             left: 8px;
             top: 50%;
@@ -705,15 +705,15 @@
             <div class="logo">PB</div>
             <div>
                 <h1>PrimBooks QA Bug Tracker</h1>
-                <div class="subtitle">Azeez Test Lab — Last saved: <span id="lastSaved">Never</span></div>
+                <div class="subtitle">Azeez Test Lab â€” Last saved: <span id="lastSaved">Never</span></div>
             </div>
         </div>
         <div class="header-actions">
-            <button class="btn btn-secondary" onclick="undoLastChange()" title="Undo last change" id="undoBtn" disabled>↩ Undo</button>
-            <button class="btn btn-secondary" onclick="exportMarkdown()">📄 Export Markdown</button>
-            <button class="btn btn-secondary" onclick="exportMeetingAudit()">📊 Export Meeting Audit</button>
+            <button class="btn btn-secondary" onclick="undoLastChange()" title="Undo last change" id="undoBtn" disabled>â†© Undo</button>
+            <button class="btn btn-secondary" onclick="exportMarkdown()">ðŸ“„ Export Markdown</button>
+            <button class="btn btn-secondary" onclick="exportMeetingAudit()">ðŸ“Š Export Meeting Audit</button>
             <button class="btn btn-primary" onclick="openAddModal()">+ Add Bug</button>
-            <button class="btn btn-danger" onclick="copyForPush()" title="Copy bugs to clipboard then run PUSH.bat" style="margin-left:8px">📋 Copy for Push</button>
+            <button class="btn btn-danger" onclick="copyForPush()" title="Copy bugs to clipboard then run PUSH.bat" style="margin-left:8px">ðŸ“‹ Copy for Push</button>
         </div>
     </div>
     <div class="stats-bar">
@@ -767,20 +767,20 @@
         <span class="filter-label">Status:</span>
         <select class="filter-select" id="filterStatus" onchange="renderTable()">
             <option value="all">All</option>
-            <option value="Open">🔴 Open</option>
-            <option value="Fixed">🟡 Fixed</option>
-            <option value="Closed">🟢 Closed</option>
-            <option value="Void">⚫ Void</option>
+            <option value="Open">ðŸ”´ Open</option>
+            <option value="Fixed">ðŸŸ¡ Fixed</option>
+            <option value="Closed">ðŸŸ¢ Closed</option>
+            <option value="Void">âš« Void</option>
         </select>
     </div>
     <div class="filter-group">
         <span class="filter-label">Severity:</span>
         <select class="filter-select" id="filterSeverity" onchange="renderTable()">
             <option value="all">All</option>
-            <option value="Critical">🔴 Critical</option>
-            <option value="High">🟠 High</option>
-            <option value="Medium">🟡 Medium</option>
-            <option value="Low">🟢 Low</option>
+            <option value="Critical">ðŸ”´ Critical</option>
+            <option value="High">ðŸŸ  High</option>
+            <option value="Medium">ðŸŸ¡ Medium</option>
+            <option value="Low">ðŸŸ¢ Low</option>
         </select>
     </div>
     <div class="filter-group">
@@ -863,10 +863,10 @@
             <div class="form-group">
                 <label>Severity</label>
                 <select id="formSeverity">
-                    <option value="Critical">🔴 Critical</option>
-                    <option value="High">🟠 High</option>
-                    <option value="Medium">🟡 Medium</option>
-                    <option value="Low">🟢 Low</option>
+                    <option value="Critical">ðŸ”´ Critical</option>
+                    <option value="High">ðŸŸ  High</option>
+                    <option value="Medium">ðŸŸ¡ Medium</option>
+                    <option value="Low">ðŸŸ¢ Low</option>
                 </select>
             </div>
         </div>
@@ -882,10 +882,10 @@
             <div class="form-group">
                 <label>Status</label>
                 <select id="formStatus">
-                    <option value="Open">🔴 Open</option>
-                    <option value="Fixed">🟡 Fixed</option>
-                    <option value="Closed">🟢 Closed</option>
-                    <option value="Void">⚫ Void</option>
+                    <option value="Open">ðŸ”´ Open</option>
+                    <option value="Fixed">ðŸŸ¡ Fixed</option>
+                    <option value="Closed">ðŸŸ¢ Closed</option>
+                    <option value="Void">âš« Void</option>
                 </select>
             </div>
         </div>
@@ -920,7 +920,7 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast">
-    <span>✅</span>
+    <span>âœ…</span>
     <span id="toastMessage">Saved</span>
 </div>
 
@@ -928,12 +928,12 @@
 // ===================== DATA =====================
 // ===BEGIN_BUG_DATA===
 const DEFAULT_BUGS = [
-    { ticket: "PB-001", module: "CRM", feature: "Customer List — Refresh Required", description: "After creating a \"Customer\" user need to refresh button for it to display in the customer list", steps: "1. Go to CRM > Customers\n2. Click 'Add Customer'\n3. Fill in customer details and save\n4. Observe the customer list", expected: "Newly created customer should immediately appear in the customer list without needing to refresh", actual: "Customer does not appear in the list until the user manually refreshes the page.", severity: "Low", status: "Fixed", team: "Frontend" },
-    { ticket: "PB-002", module: "CRM", feature: "Credit Note — Issue Date", description: "Credit Note Issue Date field does not save changes — stays on default date", steps: "1. Go to CRM > Credit Notes\n2. Click 'Add Credit Note'\n3. Select an invoice and reason\n4. Try to change the Issue Date field to a different date", expected: "Issue Date should update to the new value typed by the user", actual: "Date field remains stuck on default value (e.g. April 09, 2026) even after user types a new date. The input does not persist changes.", severity: "Medium", status: "Fixed", team: "Frontend" },
+    { ticket: "PB-001", module: "CRM", feature: "Customer List â€” Refresh Required", description: "After creating a \"Customer\" user need to refresh button for it to display in the customer list", steps: "1. Go to CRM > Customers\n2. Click 'Add Customer'\n3. Fill in customer details and save\n4. Observe the customer list", expected: "Newly created customer should immediately appear in the customer list without needing to refresh", actual: "Customer does not appear in the list until the user manually refreshes the page.", severity: "Low", status: "Fixed", team: "Frontend" },
+    { ticket: "PB-002", module: "CRM", feature: "Credit Note â€” Issue Date", description: "Credit Note Issue Date field does not save changes â€” stays on default date", steps: "1. Go to CRM > Credit Notes\n2. Click 'Add Credit Note'\n3. Select an invoice and reason\n4. Try to change the Issue Date field to a different date", expected: "Issue Date should update to the new value typed by the user", actual: "Date field remains stuck on default value (e.g. April 09, 2026) even after user types a new date. The input does not persist changes.", severity: "Medium", status: "Fixed", team: "Frontend" },
     { ticket: "PB-003", module: "CRM", feature: "Order/Invoice", description: "The Payment date on the Record Payment modal remains default/ cannot be changed.", steps: "1. Goto CRM\n2. Navigate to invoice\n3. Select an Invoice\n4. Choose any of the invoice and record payment view\n5. Observe the Payment Date in the modal form is fixed/ Default", expected: "User should be able to change date as desired, based on the payment received", actual: "The payment Date modal filed shows a fixed date. April 12 2026", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-004", module: "Record", feature: "Opening Balance — Negative Value", description: "When a user creates a record the opening balance in the field accepts a negative balance", steps: "1. Go to Record module\n2. Click to create a new record\n3. In the Opening Balance field, enter a negative number (e.g. -5000)\n4. Save the record", expected: "The Opening Balance field should reject negative values or display a validation error", actual: "The field accepts negative values without any validation, allowing records with negative opening balances to be saved.", severity: "Low", status: "Open", team: "Backend" },
-    { ticket: "PB-005", module: "Record", feature: "Selling Price — Negative Value", description: "When creating a Record, the Selling price accepts a negative sign (-ve)", steps: "1. Go to Record module\n2. Click to create a new record\n3. In the Selling Price field, enter a negative number (e.g. -1000)\n4. Save the record", expected: "The Selling Price field should reject negative values or display a validation error", actual: "The field accepts negative values without any validation, allowing records with negative selling prices to be saved.", severity: "Low", status: "Open", team: "Backend" },
-    { ticket: "PB-006", module: "CRM", feature: "Order — Discount Display", description: "The Discount shown the create new order modal should display either in % or in whole. This can easily confuse users on how the discount is been calculated.", steps: "1. Go to CRM > Orders\n2. Click 'Create Order'\n3. Add items and observe the Discount field\n4. Enter a discount value", expected: "The Discount field should clearly indicate whether the value is a percentage (%) or a flat amount (₦), with a label or toggle to disambiguate", actual: "The Discount field shows no unit indicator — users cannot tell if they are entering a percentage or a whole number amount, leading to confusion in order calculations.", severity: "Low", status: "Fixed", team: "Frontend" },
+    { ticket: "PB-004", module: "Record", feature: "Opening Balance â€” Negative Value", description: "When a user creates a record the opening balance in the field accepts a negative balance", steps: "1. Go to Record module\n2. Click to create a new record\n3. In the Opening Balance field, enter a negative number (e.g. -5000)\n4. Save the record", expected: "The Opening Balance field should reject negative values or display a validation error", actual: "The field accepts negative values without any validation, allowing records with negative opening balances to be saved.", severity: "Low", status: "Open", team: "Backend" },
+    { ticket: "PB-005", module: "Record", feature: "Selling Price â€” Negative Value", description: "When creating a Record, the Selling price accepts a negative sign (-ve)", steps: "1. Go to Record module\n2. Click to create a new record\n3. In the Selling Price field, enter a negative number (e.g. -1000)\n4. Save the record", expected: "The Selling Price field should reject negative values or display a validation error", actual: "The field accepts negative values without any validation, allowing records with negative selling prices to be saved.", severity: "Low", status: "Open", team: "Backend" },
+    { ticket: "PB-006", module: "CRM", feature: "Order â€” Discount Display", description: "The Discount shown the create new order modal should display either in % or in whole. This can easily confuse users on how the discount is been calculated.", steps: "1. Go to CRM > Orders\n2. Click 'Create Order'\n3. Add items and observe the Discount field\n4. Enter a discount value", expected: "The Discount field should clearly indicate whether the value is a percentage (%) or a flat amount (â‚¦), with a label or toggle to disambiguate", actual: "The Discount field shows no unit indicator â€” users cannot tell if they are entering a percentage or a whole number amount, leading to confusion in order calculations.", severity: "Low", status: "Fixed", team: "Frontend" },
     { ticket: "PB-007", module: "CRM", feature: "Invoice - Discount", description: "Leading zero in Discount input field, which can affect an inexperience user.", steps: "1. Go to CRM > Orders\n2. Click 'Create Order'\n3. Add items and observe the form field\n4. Observe the leading zero/ default zero", expected: "The input should automatically change if user desire to use any figure other than zero, leading zero should not be either in front or back of discount value.", actual: "The defaults zero shows and forms a leading zero, also stay inbetween value input by the user.", severity: "Medium", status: "Fixed", team: "Frontend" }
 ];
 // ===END_BUG_DATA===
@@ -943,7 +943,7 @@ let bugs = [];
 let expandedRows = new Set();
 const MAX_UNDO_HISTORY = 50;
 
-// Version tracker — increment this each time DEFAULT_BUGS is updated
+// Version tracker â€” increment this each time DEFAULT_BUGS is updated
 const DATA_VERSION = 7;
 
 function loadBugs() {
@@ -970,7 +970,7 @@ function loadBugs() {
 
 function showSyncNotification(count, tickets) {
     const ticketList = tickets.join(', ');
-    showToast(`🔄 ${count} new bug${count > 1 ? 's' : ''} synced: ${ticketList}`);
+    showToast(`ðŸ”„ ${count} new bug${count > 1 ? 's' : ''} synced: ${ticketList}`);
 }
 
 // ===================== UNDO HISTORY =====================
@@ -992,7 +992,7 @@ function pushToHistory() {
 function undoLastChange() {
     const history = JSON.parse(localStorage.getItem('primbooks_undo_history') || '[]');
     if (history.length === 0) {
-        showToast('⚠️ Nothing to undo');
+        showToast('âš ï¸ Nothing to undo');
         return;
     }
     // Pop the last state
@@ -1003,7 +1003,7 @@ function undoLastChange() {
     bugs = JSON.parse(previousState);
     renderTable();
     updateUndoButton();
-    showToast('↩ Undone — reverted to previous state');
+    showToast('â†© Undone â€” reverted to previous state');
 }
 
 function updateUndoButton() {
@@ -1018,8 +1018,8 @@ function updateUndoButton() {
 }
 
 function resetToDefaults() {
-    if (confirm('⚠️ FACTORY RESET: This will wipe ALL bugs and restore original defaults. This CANNOT be undone. Are you absolutely sure?')) {
-        if (confirm('🛑 SECOND CONFIRM: All your added bugs, status changes, and edits will be permanently deleted. Proceed?')) {
+    if (confirm('âš ï¸ FACTORY RESET: This will wipe ALL bugs and restore original defaults. This CANNOT be undone. Are you absolutely sure?')) {
+        if (confirm('ðŸ›‘ SECOND CONFIRM: All your added bugs, status changes, and edits will be permanently deleted. Proceed?')) {
             localStorage.removeItem('primbooks_bugs');
             localStorage.removeItem('primbooks_data_version');
             localStorage.removeItem('primbooks_undo_history');
@@ -1027,7 +1027,7 @@ function resetToDefaults() {
             localStorage.setItem('primbooks_data_version', DATA_VERSION);
             saveBugsNoHistory();
             renderTable();
-            showToast('🔄 Factory reset complete — all data cleared');
+            showToast('ðŸ”„ Factory reset complete â€” all data cleared');
         }
     }
 }
@@ -1119,24 +1119,24 @@ function renderTable() {
         const isExpanded = expandedRows.has(realIdx);
 
         html += `<tr>
-            <td><button class="expand-btn" onclick="toggleDetail(${realIdx})">${isExpanded ? '▼' : '▶'}</button></td>
+            <td><button class="expand-btn" onclick="toggleDetail(${realIdx})">${isExpanded ? 'â–¼' : 'â–¶'}</button></td>
             <td><span class="ticket-num">${esc(bug.ticket)}</span></td>
             <td style="max-width:320px">${esc(bug.description)}</td>
             <td><span class="module-text">${esc(bug.module)}</span></td>
             <td><span class="severity-badge ${bug.severity.toLowerCase()}">${severityIcon(bug.severity)} ${bug.severity}</span></td>
             <td>
                 <select class="status-select ${bug.status.toLowerCase()}" onchange="changeStatus(${realIdx}, this.value)">
-                    <option value="Open" ${bug.status === 'Open' ? 'selected' : ''}>🔴 Open</option>
-                    <option value="Fixed" ${bug.status === 'Fixed' ? 'selected' : ''}>🟡 Fixed</option>
-                    <option value="Closed" ${bug.status === 'Closed' ? 'selected' : ''}>🟢 Closed</option>
-                    <option value="Void" ${bug.status === 'Void' ? 'selected' : ''}>⚫ Void</option>
+                    <option value="Open" ${bug.status === 'Open' ? 'selected' : ''}>ðŸ”´ Open</option>
+                    <option value="Fixed" ${bug.status === 'Fixed' ? 'selected' : ''}>ðŸŸ¡ Fixed</option>
+                    <option value="Closed" ${bug.status === 'Closed' ? 'selected' : ''}>ðŸŸ¢ Closed</option>
+                    <option value="Void" ${bug.status === 'Void' ? 'selected' : ''}>âš« Void</option>
                 </select>
             </td>
             <td><span class="team-badge ${bug.team.toLowerCase()}">${bug.team}</span></td>
             <td>
                 <div class="actions-cell">
-                    <button class="expand-btn" onclick="editBug(${realIdx})" title="Edit">✏️</button>
-                    <button class="delete-btn" onclick="deleteBug(${realIdx})" title="Delete">🗑️</button>
+                    <button class="expand-btn" onclick="editBug(${realIdx})" title="Edit">âœï¸</button>
+                    <button class="delete-btn" onclick="deleteBug(${realIdx})" title="Delete">ðŸ—‘ï¸</button>
                 </div>
             </td>
         </tr>`;
@@ -1164,7 +1164,7 @@ function renderTable() {
 }
 
 function severityIcon(s) {
-    const icons = { Critical: '🔴', High: '🟠', Medium: '🟡', Low: '🟢' };
+    const icons = { Critical: 'ðŸ”´', High: 'ðŸŸ ', Medium: 'ðŸŸ¡', Low: 'ðŸŸ¢' };
     return icons[s] || '';
 }
 
@@ -1180,7 +1180,7 @@ function changeStatus(idx, newStatus) {
     bugs[idx].status = newStatus;
     saveBugs();
     renderTable();
-    showToast(`${bugs[idx].ticket} → ${newStatus}`);
+    showToast(`${bugs[idx].ticket} â†’ ${newStatus}`);
 }
 
 function toggleDetail(idx) {
@@ -1283,7 +1283,7 @@ function saveBug() {
 
 // ===================== EXPORT =====================
 function exportMarkdown() {
-    let md = `# PrimBooks — Bug Tickets Registry\n\n`;
+    let md = `# PrimBooks â€” Bug Tickets Registry\n\n`;
     md += `**Last Updated:** ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}\n`;
     md += `**QA Lead:** Azeez Test Lab\n\n`;
     md += `---\n\n`;
@@ -1291,23 +1291,23 @@ function exportMarkdown() {
     md += `## Summary\n\n`;
     md += `| Metric | Count |\n|:---|:---:|\n`;
     md += `| Total | ${bugs.length} |\n`;
-    md += `| 🔴 Open | ${bugs.filter(b=>b.status==='Open').length} |\n`;
-    md += `| 🟡 Fixed | ${bugs.filter(b=>b.status==='Fixed').length} |\n`;
-    md += `| 🟢 Closed | ${bugs.filter(b=>b.status==='Closed').length} |\n`;
-    md += `| ⚫ Void | ${bugs.filter(b=>b.status==='Void').length} |\n\n`;
+    md += `| ðŸ”´ Open | ${bugs.filter(b=>b.status==='Open').length} |\n`;
+    md += `| ðŸŸ¡ Fixed | ${bugs.filter(b=>b.status==='Fixed').length} |\n`;
+    md += `| ðŸŸ¢ Closed | ${bugs.filter(b=>b.status==='Closed').length} |\n`;
+    md += `| âš« Void | ${bugs.filter(b=>b.status==='Void').length} |\n\n`;
 
     md += `---\n\n## All Tickets\n\n`;
     md += `| Ticket # | Module | Bug Description | Severity | Status | Team |\n`;
     md += `|:---|:---|:---|:---:|:---:|:---:|\n`;
     bugs.forEach(b => {
         const sevIcon = severityIcon(b.severity);
-        const statIcon = { Open: '🔴', Fixed: '🟡', Closed: '🟢', Void: '⚫' }[b.status] || '';
+        const statIcon = { Open: 'ðŸ”´', Fixed: 'ðŸŸ¡', Closed: 'ðŸŸ¢', Void: 'âš«' }[b.status] || '';
         md += `| ${b.ticket} | ${b.module} | ${b.description} | ${sevIcon} ${b.severity} | ${statIcon} ${b.status} | ${b.team} |\n`;
     });
 
     md += `\n---\n\n## Detailed Bug Information\n\n`;
     bugs.forEach(b => {
-        md += `### ${b.ticket} — ${b.description}\n\n`;
+        md += `### ${b.ticket} â€” ${b.description}\n\n`;
         md += `- **Module:** ${b.module}\n`;
         md += `- **Feature:** ${b.feature || 'N/A'}\n`;
         md += `- **Severity:** ${severityIcon(b.severity)} ${b.severity}\n`;
@@ -1332,7 +1332,7 @@ function exportMeetingAudit() {
     const resolved = fixed + closed;
     const rate = total > 0 ? Math.round((resolved / total) * 100) : 0;
 
-    let md = `# PrimBooks — Meeting Audit Summary\n\n`;
+    let md = `# PrimBooks â€” Meeting Audit Summary\n\n`;
     md += `**Date:** ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}\n`;
     md += `**QA Lead:** Azeez Test Lab\n\n`;
     md += `---\n\n`;
@@ -1340,10 +1340,10 @@ function exportMeetingAudit() {
     md += `## Quick Overview\n\n`;
     md += `| Metric | Value |\n|:---|:---:|\n`;
     md += `| Total Tickets | ${total} |\n`;
-    md += `| 🔴 Open | ${open} |\n`;
-    md += `| 🟡 Fixed | ${fixed} |\n`;
-    md += `| 🟢 Closed | ${closed} |\n`;
-    md += `| ⚫ Void | ${voidC} |\n`;
+    md += `| ðŸ”´ Open | ${open} |\n`;
+    md += `| ðŸŸ¡ Fixed | ${fixed} |\n`;
+    md += `| ðŸŸ¢ Closed | ${closed} |\n`;
+    md += `| âš« Void | ${voidC} |\n`;
     md += `| Resolution Rate | ${rate}% |\n\n`;
 
     md += `---\n\n## By Severity\n\n`;
@@ -1402,31 +1402,38 @@ function downloadFile(filename, content) {
 
 // ===================== COPY FOR PUSH =====================
 function copyForPush() {
-    // Generate the DEFAULT_BUGS JavaScript code from current bugs
-    let code = '// ===BEGIN_BUG_DATA===
-const DEFAULT_BUGS = [
-    { ticket: "PB-001", module: "CRM", feature: "Customer List — Refresh Required", description: "After creating a \"Customer\" user need to refresh button for it to display in the customer list", steps: "1. Go to CRM > Customers\n2. Click 'Add Customer'\n3. Fill in customer details and save\n4. Observe the customer list", expected: "Newly created customer should immediately appear in the customer list without needing to refresh", actual: "Customer does not appear in the list until the user manually refreshes the page.", severity: "Low", status: "Fixed", team: "Frontend" },
-    { ticket: "PB-002", module: "CRM", feature: "Credit Note — Issue Date", description: "Credit Note Issue Date field does not save changes — stays on default date", steps: "1. Go to CRM > Credit Notes\n2. Click 'Add Credit Note'\n3. Select an invoice and reason\n4. Try to change the Issue Date field to a different date", expected: "Issue Date should update to the new value typed by the user", actual: "Date field remains stuck on default value (e.g. April 09, 2026) even after user types a new date. The input does not persist changes.", severity: "Medium", status: "Fixed", team: "Frontend" },
-    { ticket: "PB-003", module: "CRM", feature: "Order/Invoice", description: "The Payment date on the Record Payment modal remains default/ cannot be changed.", steps: "1. Goto CRM\n2. Navigate to invoice\n3. Select an Invoice\n4. Choose any of the invoice and record payment view\n5. Observe the Payment Date in the modal form is fixed/ Default", expected: "User should be able to change date as desired, based on the payment received", actual: "The payment Date modal filed shows a fixed date. April 12 2026", severity: "Medium", status: "Open", team: "Frontend" },
-    { ticket: "PB-004", module: "Record", feature: "Opening Balance — Negative Value", description: "When a user creates a record the opening balance in the field accepts a negative balance", steps: "1. Go to Record module\n2. Click to create a new record\n3. In the Opening Balance field, enter a negative number (e.g. -5000)\n4. Save the record", expected: "The Opening Balance field should reject negative values or display a validation error", actual: "The field accepts negative values without any validation, allowing records with negative opening balances to be saved.", severity: "Low", status: "Open", team: "Backend" },
-    { ticket: "PB-005", module: "Record", feature: "Selling Price — Negative Value", description: "When creating a Record, the Selling price accepts a negative sign (-ve)", steps: "1. Go to Record module\n2. Click to create a new record\n3. In the Selling Price field, enter a negative number (e.g. -1000)\n4. Save the record", expected: "The Selling Price field should reject negative values or display a validation error", actual: "The field accepts negative values without any validation, allowing records with negative selling prices to be saved.", severity: "Low", status: "Open", team: "Backend" },
-    { ticket: "PB-006", module: "CRM", feature: "Order — Discount Display", description: "The Discount shown the create new order modal should display either in % or in whole. This can easily confuse users on how the discount is been calculated.", steps: "1. Go to CRM > Orders\n2. Click 'Create Order'\n3. Add items and observe the Discount field\n4. Enter a discount value", expected: "The Discount field should clearly indicate whether the value is a percentage (%) or a flat amount (₦), with a label or toggle to disambiguate", actual: "The Discount field shows no unit indicator — users cannot tell if they are entering a percentage or a whole number amount, leading to confusion in order calculations.", severity: "Low", status: "Open", team: "Frontend" },
-    { ticket: "PB-007", module: "CRM", feature: "Invoice - Discount", description: "Leading zero in Discount input field, which can affect an inexperience user.", steps: "1. Go to CRM > Orders\n2. Click 'Create Order'\n3. Add items and observe the form field\n4. Observe the leading zero/ default zero", expected: "The input should automatically change if user desire to use any figure other than zero, leading zero should not be either in front or back of discount value.", actual: "The defaults zero shows and forms a leading zero, also stay inbetween value input by the user.", severity: "Medium", status: "Open", team: "Frontend" }
-];
-// ===END_BUG_DATA===';
-
-    navigator.clipboard.writeText(code).then(() => {
-        showToast('📋 Copied ' + bugs.length + ' bugs! Now double-click PUSH.bat');
-    }).catch(() => {
-        // Fallback for file:// protocol
-        const ta = document.createElement('textarea');
+    var code = "// ===BEGIN_BUG_DATA===\n";
+    code += "const DEFAULT_BUGS = [\n";
+    bugs.forEach(function(bug, i) {
+        code += "    { ";
+        code += "ticket: " + JSON.stringify(bug.ticket) + ", ";
+        code += "module: " + JSON.stringify(bug.module) + ", ";
+        code += "feature: " + JSON.stringify(bug.feature || "") + ", ";
+        code += "description: " + JSON.stringify(bug.description) + ", ";
+        code += "steps: " + JSON.stringify(bug.steps || "") + ", ";
+        code += "expected: " + JSON.stringify(bug.expected || "") + ", ";
+        code += "actual: " + JSON.stringify(bug.actual || "") + ", ";
+        code += "severity: " + JSON.stringify(bug.severity) + ", ";
+        code += "status: " + JSON.stringify(bug.status) + ", ";
+        code += "team: " + JSON.stringify(bug.team);
+        code += " }";
+        if (i < bugs.length - 1) code += ",";
+        code += "\n";
+    });
+    code += "];\n";
+    code += "// ===END_BUG_DATA===";
+    navigator.clipboard.writeText(code).then(function() {
+        showToast("Copied " + bugs.length + " bugs! Run PUSH.bat now");
+    }).catch(function() {
+        var ta = document.createElement("textarea");
         ta.value = code;
         document.body.appendChild(ta);
         ta.select();
-        document.execCommand('copy');
+        document.execCommand("copy");
         document.body.removeChild(ta);
-        showToast('📋 Copied ' + bugs.length + ' bugs! Now double-click PUSH.bat');
+        showToast("Copied " + bugs.length + " bugs! Run PUSH.bat now");
     });
+}
 }
 
 // ===================== TOAST =====================
